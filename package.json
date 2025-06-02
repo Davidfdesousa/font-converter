@@ -6,10 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "convert": "tsc -p tsconfig.node.json && node dist-node/converter.js"
   },
   "devDependencies": {
+    "ts-node": "^10.9.2",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@types/wawoff2": "^1.0.2",
+    "fonteditor-core": "^2.4.1",
+    "wawoff2": "^2.0.1"
   }
 }

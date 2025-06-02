@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ES2021",
+    "lib": ["ES2021"],
+    "outDir": "dist-node",
+    "types": ["node"],
+    "noEmit": false,
+
+    // Anula flags herdadas que conflitam com ESM
+    "allowImportingTsExtensions": false,
+    "verbatimModuleSyntax": false,
+
+    // Permite importar pacotes WASM ou CommonJS facilmente
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/converter.ts"]
+}

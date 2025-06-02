@@ -1,13 +1,107 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teste Visual: WOFF2 vs WOFF</title>
+
+  <style>
+    body {
+      margin: 2rem;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    /* Bloco 1: força a usar apenas o WOFF2 */
+    @font-face {
+      font-family: 'icomoon-woff2-only';
+      src: url('/fonts/converted/icomoon.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* Bloco 2: força a usar apenas o WOFF */
+    @font-face {
+      font-family: 'icomoon-woff-only';
+      src: url('/fonts/icomoon.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* Estilo para os blocos de exibição */
+    .test-block {
+      display: inline-block;
+      vertical-align: top;
+      width: 45%;
+      margin-right: 5%;
+      background: #fff;
+      padding: 1rem;
+      box-shadow: 0 0 4px rgba(0,0,0,0.1);
+      border-radius: 4px;
+    }
+
+    .test-block:last-child {
+      margin-right: 0;
+    }
+
+    .test-block h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .icon {
+      font-size: 64px;
+      color: #444;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .label {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Teste Visual: WOFF2 vs WOFF</h1>
+  <p>
+    Acima você verá dois blocos:
+    <strong>“Somente WOFF2”</strong> (à esquerda) e <strong>“Somente WOFF”</strong> (à direita).
+    Se ambos exibirem o ícone corretamente, significa que tanto o WOFF2 quanto o WOFF estão válidos.
+    Se o bloco “WOFF2” aparecer quebrado (quadrado vazio), mas o “WOFF” aparecer OK, 
+    então o WOFF2 não está sendo carregado corretamente.  
+    Use o DevTools ↦ Network para ver qual arquivo foi baixado em cada caso.
+  </p>
+
+  <!-- Bloco 1: usa fonte criada apenas com WOFF2 -->
+  <div class="test-block">
+    <h2>Somente WOFF2</h2>
+    <div class="icon" style="font-family: 'icomoon-woff2-only';">
+      <!-- coloque aqui o código Unicode do seu ícone -->
+      &#xE917;
+    </div>
+    <div class="label">Fonte: icomoon.woff2</div>
+  </div>
+
+  <!-- Bloco 2: usa fonte criada apenas com WOFF -->
+  <div class="test-block">
+    <h2>Somente WOFF</h2>
+    <div class="icon" style="font-family: 'icomoon-woff-only';">
+      <!-- o mesmo código Unicode, mas agora vindo do WOFF -->
+      &#xE917;
+    </div>
+    <div class="label">Fonte: icomoon.woff</div>
+  </div>
+
+  <hr style="margin-top:2rem;"/>
+
+  <p>
+    <strong>Como interpretar:</strong><br/>
+    • Se o navegador suportar WOFF2, o bloco <span style="font-weight:bold;">“Somente WOFF2”</span> deve exibir o ícone corretamente.  
+    • O bloco <span style="font-weight:bold;">“Somente WOFF”</span> também deve exibir o mesmo ícone (POSIÇÃO IGUAL) — isso mostra que o arquivo WOFF é válido.  
+    • Caso algum dos blocos mostre apenas um quadrado vazio (tofu), significa que ele não conseguiu carregar a fonte no formato correspondente.  
+  </p>
+</body>
 </html>
